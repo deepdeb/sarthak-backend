@@ -1,0 +1,37 @@
+const readPool = require('../../config/mysql').readPool;
+
+exports.getEnquiryList = async (data) => {
+    try {
+        let resp_to_send = []
+        if (data.check_designation_id == 1) {
+            if (data.sbu_id == 0) {
+                let enquiry_list_sql = "SELECT e.enquiry_id, e.sbu_id, e.sales_person_id, sp.sales_person_name, e.customer_id, c.customer, DATE_FORMAT(e.enquiry_date, '%Y-%m-%d') as enquiry_date, e.enquiry_source_id, es.enquiry_source_name, e.principal_house, DATE_FORMAT(e.offer_date, '%Y-%m-%d') as offer_date, e.basic_value, e.tentative_finalization_month, e.tentative_finalization_year, e.status_initial, e.remarks_initial, e.support_initial FROM enquiry e JOIN sales_person sp ON sp.sales_person_id = e.sales_person_id JOIN customer c ON c.customer_id = e.customer_id JOIN enquiry_source es ON es.enquiry_source_id = e.enquiry_source_id"
+                const [enquiry_list_resp] = await readPool.query(enquiry_list_sql);
+
+                let total_count = enquiry_list_resp.length
+
+                resp_to_send.push(enquiry_list_resp, total_count);
+                return resp_to_send
+            } else {
+                let enquiry_list_sql = "SELECT e.enquiry_id, e.sbu_id, sb.sbu_name, e.sales_person_id, sp.sales_person_name, e.customer_id, c.customer, DATE_FORMAT(e.enquiry_date, '%Y-%m-%d') as enquiry_date, e.enquiry_source_id, es.enquiry_source_name, e.principal_house, DATE_FORMAT(e.offer_date, '%Y-%m-%d') as offer_date, e.basic_value, e.tentative_finalization_month, e.tentative_finalization_year, e.status_initial, e.remarks_initial, e.support_initial FROM enquiry e JOIN sales_person sp ON sp.sales_person_id = e.sales_person_id JOIN customer c ON c.customer_id = e.customer_id JOIN sbu sb ON e.sbu_id = sb.sbu_id JOIN enquiry_source es ON es.enquiry_source_id = e.enquiry_source_id WHERE e.sbu_id = ?"
+                const [enquiry_list_resp] = await readPool.query(enquiry_list_sql, [data.sbu_id]);
+
+                let total_count = enquiry_list_resp.length
+
+                resp_to_send.push(enquiry_list_resp, total_count);
+                return resp_to_send
+            }
+        } else {
+            let enquiry_list_sql = "SELECT e.enquiry_id, e.sbu_id, sb.sbu_name, e.sales_person_id, sp.sales_person_name, e.customer_id, c.customer, DATE_FORMAT(e.enquiry_date, '%Y-%m-%d') as enquiry_date, e.enquiry_source_id, es.enquiry_source_name, e.principal_house, DATE_FORMAT(e.offer_date, '%Y-%m-%d') as offer_date, e.basic_value, e.tentative_finalization_month, e.tentative_finalization_year, e.status_initial, e.remarks_initial, e.support_initial FROM enquiry e JOIN sales_person sp ON sp.sales_person_id = e.sales_person_id JOIN customer c ON c.customer_id = e.customer_id JOIN sbu sb ON e.sbu_id = sb.sbu_id JOIN enquiry_source es ON es.enquiry_source_id = e.enquiry_source_id WHERE e.sbu_id = ? AND e.sales_person_id = ?"
+            const [enquiry_list_resp] = await readPool.query(enquiry_list_sql, [data.sbu_id, data.sales_person_id]);
+
+            let total_count = enquiry_list_resp.length
+
+            resp_to_send.push(enquiry_list_resp, total_count);
+            return resp_to_send
+        }
+    } catch (error) {
+        console.log('Get enquiry list service error: ', error);
+        return;
+    }
+}
