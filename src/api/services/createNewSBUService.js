@@ -12,7 +12,7 @@ exports.createNewSBU = async(data) => {
             return 'You cannot create company'
         }
     } catch (error) {
-        console.log('Error:', error);
+        console.log('Create new SBU service error:', error);
         return;
     }
 }
