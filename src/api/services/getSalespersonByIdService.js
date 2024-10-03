@@ -9,7 +9,7 @@ exports.getSalespersonById = async (data) => {
             return resp;
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Get salesperson by ID service error: ', error);
         return;
     }
 }
