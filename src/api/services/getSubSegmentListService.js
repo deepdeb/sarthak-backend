@@ -11,7 +11,7 @@ exports.getSubSegmentList = async (data) => {
         resp_to_send.push(resp, total_count);
         return resp_to_send
     } catch (error) {
-        console.log('segment list service error: ', error);
+        console.log('get sub segment list service error: ', error);
         return
     }
 }
