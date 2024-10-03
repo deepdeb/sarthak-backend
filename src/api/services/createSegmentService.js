@@ -8,7 +8,7 @@ exports.createSegment = async (data) => {
         return 'Segment created successfully'
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Create segment service error: ', error);
         return;
     }
 }
@@ -22,7 +22,7 @@ exports.editSegment = async (data) => {
             return 'Segment updated successfully'
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Edit segment service error: ', error);
         return;
     }
 }
