@@ -33,7 +33,7 @@ exports.editCustomer = async (data) => {
 
         return 'Customer edited successfully'
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Create customer service error: ', error);
         return;
     }
 }
