@@ -34,7 +34,7 @@ exports.getSalespersonList = async (data) => {
             }
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Get salesperson list service error: ', error);
         return;
     }
 }
