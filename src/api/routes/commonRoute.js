@@ -17,6 +17,7 @@ const { getSegmentListController } = require('../controllers/common/getSegmentLi
 const { getStateListController } = require('../controllers/common/getStateList');
 const { getSubSegmentListController } = require('../controllers/common/getSubSegmentList');
 const { getSubSubSegmentListController } = require('../controllers/common/getSubSubSegmentList');
+const { getSubSubSubSegmentListController } = require('../controllers/common/getSubSubSubSegmentList');
 const { loginController } = require('../controllers/common/login');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
@@ -29,6 +30,7 @@ router.post('/login', loginController)
 router.get('/getSegmentList', getSegmentListController)
 router.post('/getSubSegmentList', getSubSegmentListController)
 router.post('/getSubSubSegmentList', getSubSubSegmentListController)
+router.post('/getSubSubSubSegmentList', getSubSubSubSegmentListController)
 router.get('/getStateList', getStateListController)
 router.get('/getProductCategoryList', getProductCategoryListController)
 router.get('/getFunctionList', getFunctionListController)
