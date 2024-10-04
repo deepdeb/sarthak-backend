@@ -3,6 +3,7 @@ const createSalespersonService = require('../../services/createSalespersonServic
 exports.createSalespersonController = async (req, res) => {
     try {
         const createSalespersonData = Joi.object({
+            mentor_id: Joi.optional(),
             sbu_id: Joi.required(),
             function_id: Joi.required(),
             sales_person_name: Joi.required(),
@@ -34,6 +35,7 @@ exports.editSalespersonController = async (req, res) => {
     try {
         const editSalespersonData = Joi.object({
             sales_person_id: Joi.required(),
+            mentor_id: Joi.optional(),
             sbu_id: Joi.required(),
             function_id: Joi.required(),
             sales_person_name: Joi.required(),

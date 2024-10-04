@@ -14,10 +14,18 @@ exports.createSalesperson = async (data) => {
             return 'Email ID exists';
         }
 
-        let insert_sql = "INSERT INTO sales_person (sbu_id, function_id, sales_person_name, designation_id, mobile, email, dob, password) VALUES (?,?,?,?,?,?,?,?)"
-        const resp = await writePool.query(insert_sql, [data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password]);
-        if (resp) {
-            return 'Salesperson created successfully'
+        if(data.mentor_id) {
+            let insert_sql = "INSERT INTO sales_person (mentor_id, sbu_id, function_id, sales_person_name, designation_id, mobile, email, dob, password) VALUES (?,?,?,?,?,?,?,?)"
+            const resp = await writePool.query(insert_sql, [data.mentor_id, data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password]);
+            if (resp) {
+                return 'Salesperson created successfully'
+            }
+        } else {
+            let insert_sql = "INSERT INTO sales_person (sbu_id, function_id, sales_person_name, designation_id, mobile, email, dob, password) VALUES (?,?,?,?,?,?,?,?)"
+            const resp = await writePool.query(insert_sql, [data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password]);
+            if (resp) {
+                return 'Salesperson created successfully'
+            }
         }
     } catch (error) {
         console.log("Create Salesperson Service Error: ", error);
@@ -27,8 +35,8 @@ exports.createSalesperson = async (data) => {
 
 exports.editSalesperson = async (data) => {
     try {
-        let update_sql = "UPDATE sales_person SET sbu_id = ?, function_id = ?, sales_person_name = ?, designation_id = ?, mobile = ?, email = ?, dob = ?, password = ? WHERE sales_person_id = ?"
-        const update_resp = await writePool.query(update_sql, [data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password, data.sales_person_id]);
+        let update_sql = "UPDATE sales_person SET mentor_id = ?, sbu_id = ?, function_id = ?, sales_person_name = ?, designation_id = ?, mobile = ?, email = ?, dob = ?, password = ? WHERE sales_person_id = ?"
+        const update_resp = await writePool.query(update_sql, [data.mentor_id, data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password, data.sales_person_id]);
         if (update_resp) {
             return 'Profile edited successfully'
         }
