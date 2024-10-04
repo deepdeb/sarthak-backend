@@ -6,6 +6,7 @@ const { createSegmentController, editSegmentController } = require('../controlle
 const { createSubSegmentController, editSubSegmentController } = require('../controllers/director/createSubSegment');
 const { createSubSubSegmentController } = require('../controllers/director/createSubSubSegment');
 const { createSubSubSubSegmentController } = require('../controllers/director/createSubSubSubSegment');
+const { getMentorListController } = require('../controllers/director/getMentorList');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -17,3 +18,4 @@ router.post('/createSubSubSegment', createSubSubSegmentController);
 router.post('/createSubSubSubSegment', createSubSubSubSegmentController);
 router.post('/editSegment', editSegmentController);
 router.post('/editSubSegment', editSubSegmentController);
+router.post('/getMentorList', getMentorListController)
