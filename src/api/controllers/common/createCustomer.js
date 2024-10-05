@@ -48,13 +48,14 @@ exports.editCustomerController = async (req, res) => {
     try {
         const editCustomerData = Joi.object({
             customer_id: Joi.required(),
-            date: Joi.required(),
             sbu_id: Joi.required(),
             sales_person_id: Joi.required(),
             mentor_id: Joi.required(),
             customer: Joi.required(),
             segment_id: Joi.required(),
             subsegment_id: Joi.required(),
+            subsubsegment_id: Joi.required(),
+            subsubsubsegment_id: Joi.required(),
             name: Joi.required(),
             designation: Joi.required(),
             department: Joi.required(),
