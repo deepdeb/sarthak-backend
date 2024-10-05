@@ -63,7 +63,7 @@ exports.getDashboardCount = async (data) => {
             const [customer_count_resp] = await readPool.query(customer_count_sql, [data.sbu_id]);
             const total_customers = customer_count_resp[0].total_customers;
 
-            let sales_person_count_sql = "SELECT count(sales_person_id) as total_sales_person FROM sales_person WHERE sbu_id = ? AND (designation_id = 2 OR designation_id = 3)"
+            let sales_person_count_sql = "SELECT count(sales_person_id) as total_sales_person FROM sales_person WHERE sbu_id = ? AND (designation_id = 2 OR designation_id = 3 OR designation_id = 4)"
             const [sales_person_count_resp] = await readPool.query(sales_person_count_sql, [data.sbu_id]);
             const total_salesperson = sales_person_count_resp[0].total_sales_person
 
