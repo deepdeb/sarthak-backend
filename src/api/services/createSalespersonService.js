@@ -15,7 +15,7 @@ exports.createSalesperson = async (data) => {
         }
 
         if(data.mentor_id) {
-            let insert_sql = "INSERT INTO sales_person (mentor_id, sbu_id, function_id, sales_person_name, designation_id, mobile, email, dob, password) VALUES (?,?,?,?,?,?,?,?)"
+            let insert_sql = "INSERT INTO sales_person (mentor_id, sbu_id, function_id, sales_person_name, designation_id, mobile, email, dob, password) VALUES (?,?,?,?,?,?,?,?,?)"
             const resp = await writePool.query(insert_sql, [data.mentor_id, data.sbu_id, data.function_id, data.sales_person_name, data.designation_id, data.mobile, data.email, data.dob, data.password]);
             if (resp) {
                 return 'Salesperson created successfully'
