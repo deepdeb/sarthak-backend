@@ -5,7 +5,6 @@ exports.createCustomerController = async (req, res) => {
         const createCustomerData = Joi.object({
             sbu_id: Joi.required(),
             sales_person_id: Joi.required(),
-            mentor_id: Joi.required(),
             customer: Joi.required(),
             segment_id: Joi.required(),
             subsegment_id: Joi.optional(),
@@ -50,7 +49,6 @@ exports.editCustomerController = async (req, res) => {
             customer_id: Joi.required(),
             sbu_id: Joi.required(),
             sales_person_id: Joi.required(),
-            mentor_id: Joi.required(),
             customer: Joi.required(),
             segment_id: Joi.required(),
             subsegment_id: Joi.optional(),
