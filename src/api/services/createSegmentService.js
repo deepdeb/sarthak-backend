@@ -6,7 +6,7 @@ exports.createSegment = async (data) => {
         let existing_segment_sql = "SELECT segment_id FROM segment WHERE segment_name = ?"
         const [existing_segment_resp] = await readPool.query(existing_segment_sql, data.segment_name);
 
-        if(existing_segment_resp) {
+        if(existing_segment_resp.length > 0) {
             return 'Segment already exists'
         }
 

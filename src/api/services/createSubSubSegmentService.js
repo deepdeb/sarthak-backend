@@ -6,7 +6,7 @@ exports.createSubSubSegment = async (data) => {
         let existing_subsubsegment_sql = "SELECT subsubsegment_id FROM subsubsegment WHERE subsubsegment_name = ?"
         const [existing_subsubsegment_resp] = await readPool.query(existing_subsubsegment_sql, data.subsubsegment_name);
 
-        if(existing_subsubsegment_resp) {
+        if(existing_subsubsegment_resp.length > 0) {
             return 'Sub sub segment already exists'
         }
 
