@@ -1,6 +1,15 @@
+const { readPool } = require('../../config/mysql');
 const writePool = require('../../config/mysql').writePool;
+
 exports.createSegment = async (data) => {
     try {
+        let existing_segment_sql = "SELECT segment_id FROM segment WHERE segment_name = ?"
+        const [existing_segment_resp] = await readPool.query(existing_segment_sql, data.segment_name);
+
+        if(existing_segment_resp) {
+            return 'Segment already exists'
+        }
+
         let insert_segment_sql = "INSERT INTO segment (segment_name) VALUES (?)"
         const [insert_segment_resp] = await writePool.query(insert_segment_sql, [data.segment_name]);
 
