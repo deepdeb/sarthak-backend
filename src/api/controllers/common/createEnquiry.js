@@ -9,13 +9,13 @@ exports.createEnquiryController = async (req, res) => {
             enquiry_date: Joi.required(),
             enquiry_source_id: Joi.required(),
             principal_house: Joi.required(),
-            offer_date: Joi.required(),
-            basic_value: Joi.required(),
-            tentative_finalization_month: Joi.required(),
-            tentative_finalization_year: Joi.required(),
-            status_initial: Joi.required(),
-            remarks_initial: Joi.required(),
-            support_initial: Joi.required()
+            offer_date: Joi.optional(),
+            basic_value: Joi.optional(),
+            tentative_finalization_month: Joi.optional(),
+            tentative_finalization_year: Joi.optional(),
+            status_initial: Joi.optional(),
+            remarks_initial: Joi.optional(),
+            support_initial: Joi.optional()
         })
         const { error, value } = createEnquiryData.validate(req.body);
         if(error) {
@@ -45,13 +45,13 @@ exports.editEnquiryController = async (req, res) => {
             enquiry_date: Joi.required(),
             enquiry_source_id: Joi.required(),
             principal_house: Joi.required(),
-            offer_date: Joi.required(),
-            basic_value: Joi.required(),
-            tentative_finalization_month: Joi.required(),
-            tentative_finalization_year: Joi.required(),
-            status_initial: Joi.required(),
-            remarks_initial: Joi.required(),
-            support_initial: Joi.required()
+            offer_date: Joi.optional(),
+            basic_value: Joi.optional(),
+            tentative_finalization_month: Joi.optional(),
+            tentative_finalization_year: Joi.optional(),
+            status_initial: Joi.optional(),
+            remarks_initial: Joi.optional(),
+            support_initial: Joi.optional()
         })
         const { error, value } = editEnquiryData.validate(req.body);
         if(error) {

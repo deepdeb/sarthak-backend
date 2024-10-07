@@ -4,6 +4,7 @@ const { createEnquiryController, editEnquiryController } = require('../controlle
 const { createFollowUpController } = require('../controllers/common/createFollowUp');
 const { getCustomerDetailsByIdController } = require('../controllers/common/getCustomerDetailsById');
 const { getCustomerListController } = require('../controllers/common/getCustomerList');
+const { getCustomerListBySalespersonController } = require('../controllers/common/getCustomerListBySalesperson');
 const { getDashboardCountController } = require('../controllers/common/getDashboardCount');
 const { getDesignationListController } = require('../controllers/common/getDesignationList');
 const { getEnquiryByIdController } = require('../controllers/common/getEnquiryById');
@@ -22,6 +23,7 @@ const { loginController } = require('../controllers/common/login');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
 router.post('/getCustomerList', getCustomerListController)
+router.post('/getCustomerListBySalesperson', getCustomerListBySalespersonController)
 router.post('/getCustomerDetailsById', getCustomerDetailsByIdController)
 router.post('/createCustomer', createCustomerController)
 router.post('/editCustomer', editCustomerController)

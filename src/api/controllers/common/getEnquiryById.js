@@ -15,7 +15,7 @@ exports.getEnquiryByIdController = async (req, res) => {
         console.log(`Valid get enquiry by ID data`);
         const resp = await getEnquiryByIdService.getEnquiryById(req.body);
         if(resp) {
-            return res.json({ success: true, status: 201, message: '', response: resp[0]})
+            return res.json({ success: true, status: 201, message: '', response: resp})
         } else {
             return res.json({ success: false, status:500, message: 'Internal server error', response: []})
         }
