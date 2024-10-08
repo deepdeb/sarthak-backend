@@ -31,8 +31,8 @@ exports.getDashboardCount = async (data) => {
                 total_orders
             }
         } else if (data.sbu_id == 1) {
-            let customer_count_sql = "SELECT count(customer_id) as total_customers FROM customer WHERE sbu_id = ?"
-            const [customer_count_resp] = await readPool.query(customer_count_sql, [data.sbu_id]);
+            let customer_count_sql = "SELECT count(customer_id) as total_customers FROM customer WHERE sbu_id = ? AND sales_person_id = ?"
+            const [customer_count_resp] = await readPool.query(customer_count_sql, [data.sbu_id, data.sales_person_id]);
             const total_customers = customer_count_resp[0].total_customers;
 
             let sales_person_count_sql = "SELECT count(sales_person_id) as total_sales_person FROM sales_person WHERE sbu_id = ? AND designation_id = 4"
@@ -43,8 +43,8 @@ exports.getDashboardCount = async (data) => {
             const [segments_count_resp] = await readPool.query(segments_count_sql);
             const total_segments = segments_count_resp[0].total_segments
 
-            let enquiries_count_sql = "SELECT count(enquiry_id) as total_enquiries FROM enquiry WHERE sbu_id = ?"
-            const [enquiries_count_resp] = await readPool.query(enquiries_count_sql, [data.sbu_id]);
+            let enquiries_count_sql = "SELECT count(enquiry_id) as total_enquiries FROM enquiry WHERE sbu_id = ? AND sales_person_id = ?"
+            const [enquiries_count_resp] = await readPool.query(enquiries_count_sql, [data.sbu_id, data.sales_person_id]);
             const total_enquiries = enquiries_count_resp[0].total_enquiries
 
             let orders_count_sql = "SELECT count(order_id) as total_orders FROM orders WHERE sbu_id = ?"
@@ -59,8 +59,8 @@ exports.getDashboardCount = async (data) => {
                 total_orders
             }
         } else {
-            let customer_count_sql = "SELECT count(customer_id) as total_customers FROM customer WHERE sbu_id = ?"
-            const [customer_count_resp] = await readPool.query(customer_count_sql, [data.sbu_id]);
+            let customer_count_sql = "SELECT count(customer_id) as total_customers FROM customer WHERE sbu_id = ? AND sales_person_id = ?"
+            const [customer_count_resp] = await readPool.query(customer_count_sql, [data.sbu_id, data.sales_person_id]);
             const total_customers = customer_count_resp[0].total_customers;
 
             let sales_person_count_sql = "SELECT count(sales_person_id) as total_sales_person FROM sales_person WHERE sbu_id = ? AND (designation_id = 2 OR designation_id = 3 OR designation_id = 4)"
@@ -71,8 +71,8 @@ exports.getDashboardCount = async (data) => {
             const [segments_count_resp] = await readPool.query(segments_count_sql);
             const total_segments = segments_count_resp[0].total_segments
 
-            let enquiries_count_sql = "SELECT count(enquiry_id) as total_enquiries FROM enquiry WHERE sbu_id = ?"
-            const [enquiries_count_resp] = await readPool.query(enquiries_count_sql, [data.sbu_id]);
+            let enquiries_count_sql = "SELECT count(enquiry_id) as total_enquiries FROM enquiry WHERE sbu_id = ? AND sales_person_id = ?"
+            const [enquiries_count_resp] = await readPool.query(enquiries_count_sql, [data.sbu_id, data.sales_person_id]);
             const total_enquiries = enquiries_count_resp[0].total_enquiries
 
             let orders_count_sql = "SELECT count(order_id) as total_orders FROM orders WHERE sbu_id = ?"
