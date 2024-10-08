@@ -4,7 +4,7 @@ const getEnquiryByIdService = require('../../services/getEnquiryByIdService');
 exports.getEnquiryByIdController = async (req, res) => {
     try {
         const getEnquiryByIdData = Joi.object({
-            sbu_id: Joi.required(),
+            sbu_id: Joi.optional(),
             enquiry_id: Joi.required()
         })
         const { error, value } = getEnquiryByIdData.validate(req.body);
