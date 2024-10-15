@@ -21,6 +21,7 @@ const { getSubSegmentListController } = require('../controllers/common/getSubSeg
 const { getSubSubSegmentListController } = require('../controllers/common/getSubSubSegmentList');
 const { getSubSubSubSegmentListController } = require('../controllers/common/getSubSubSubSegmentList');
 const { loginController } = require('../controllers/common/login');
+const { filterListByCategoryController } = require('../controllers/common/filterListByCategory');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
 router.post('/getCustomerList', getCustomerListController)
@@ -46,3 +47,4 @@ router.get('/getEnquirySubTypeList', getEnquirySubTypeListController)
 router.post('/getEnquiryById', getEnquiryByIdController)
 router.post('/createFollowUp', createFollowUpController)
 router.post('/getFollowUpById', getFollowUpByIdController)
+router.post('/filterListByCategory', filterListByCategoryController)
