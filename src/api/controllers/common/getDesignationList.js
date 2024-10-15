@@ -9,7 +9,7 @@ exports.getDesignationListController = async (req, res) => {
             return res.json({ success: false, status: 500, message: 'Internal server error', response: [] })
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('Get designation list controller error: ', error);
         return res.json({ success: false, status: 400, message: res.message, response: []})
     }
 }
