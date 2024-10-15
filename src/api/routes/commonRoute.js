@@ -9,7 +9,8 @@ const { getDashboardCountController } = require('../controllers/common/getDashbo
 const { getDesignationListController } = require('../controllers/common/getDesignationList');
 const { getEnquiryByIdController } = require('../controllers/common/getEnquiryById');
 const { getEnquiryListController } = require('../controllers/common/getEnquiryList');
-const { getEnquirySourceListController } = require('../controllers/common/getEnquirySourceList');
+const { getEnquiryTypeListController } = require('../controllers/common/getEnquiryTypeList');
+const { getEnquirySubTypeListController } = require('../controllers/common/getEnquirySubTypeList');
 const { getFollowUpByIdController } = require('../controllers/common/getFollowUpById');
 const { getFunctionListController } = require('../controllers/common/getFunctionList');
 const { getProductCategoryListController } = require('../controllers/common/getProductCategoryList');
@@ -40,7 +41,8 @@ router.get('/getDesignationList', getDesignationListController)
 router.post('/createEnquiry', createEnquiryController)
 router.post('/editEnquiry', editEnquiryController)
 router.post('/getEnquiryList', getEnquiryListController)
-router.get('/getEnquirySourceList', getEnquirySourceListController)
+router.get('/getEnquiryTypeList', getEnquiryTypeListController)
+router.get('/getEnquirySubTypeList', getEnquirySubTypeListController)
 router.post('/getEnquiryById', getEnquiryByIdController)
 router.post('/createFollowUp', createFollowUpController)
 router.post('/getFollowUpById', getFollowUpByIdController)
