@@ -3,7 +3,7 @@ const { readPool } = require('../../config/mysql')
 exports.filterListByCategory = async (data) => {
     try {
         if(data.filterby_keyword == 'designation' || data.filterby_keyword == 'department' || data.filterby_keyword == 'customer') {
-            let sql = "SELECT " + data.filterby_keyword + " as name FROM customer WHERE is_deleted = 0 AND is_active = 1"
+            let sql = "SELECT distinct " + data.filterby_keyword + " as name FROM customer WHERE is_deleted = 0 AND is_active = 1"
             const [resp] = await readPool.query(sql)
 
             const total_count = resp.length
