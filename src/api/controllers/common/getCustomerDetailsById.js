@@ -12,10 +12,13 @@ exports.getCustomerDetailsByIdController = async (req, res) => {
     }
     console.log(`Valid customer details by ID data`);
         const resp = await getCustomerDetailsByIdService.getCustomerDetailsById(req.body);
-        if(resp) {
-            console.log(resp);
-            return res.json({ success: true, status: 200, message: '', response: resp[0] })
-        } else {
+        if(resp.length > 0) {
+            return res.json({ success: true, status: 200, message: '', response: resp[0], product_categories: resp[1] })
+        }
+        else if (resp.length == 0){
+            return res.json({ success: true, status: 200, message: 'customer details not found', response: [], product_categories: [] })
+        }
+        else {
             return res.json({ success: false, status: 500, message: 'Internal server error', response: []})
         }
     } catch (error) {
