@@ -23,8 +23,8 @@ exports.createSubSegment = async (data) => {
 
 exports.editSubSegment = async (data) => {
     try {
-        let update_subsegment_sql = "UPDATE subsegment SET subsegment_name = ? WHERE segment_id = ? AND subsegment_id = ? AND subsegment_name = ?"
-        const [update_subsegment_resp] = await writePool.query(update_subsegment_sql, [data.segment_id, data.subsegment_id, data.subsegment_name]);
+        let update_subsegment_sql = "UPDATE subsegment SET subsegment_name = ? WHERE segment_id = ? AND subsegment_id = ?"
+        const [update_subsegment_resp] = await writePool.query(update_subsegment_sql, [data.subsegment_name, data.segment_id, data.subsegment_id]);
 
         if(update_subsegment_resp) {
             return 'Sub segment edited successfully'
