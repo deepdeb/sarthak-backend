@@ -35,8 +35,7 @@ exports.fileuploadController = async (req, res) => {
     }
 
     catch (error) {
-        console.log("error file upload: ", error);
-        logger.error("error file upload: ", error);
+        console.log("File upload controller error: ", error);
         return res.json({ status: 500, message: "Internal server error", success: false, response: null });
     }
 }
