@@ -13,7 +13,7 @@ exports.createOrderController = async (req, res) => {
             basic_po_value: Joi.required(),
             total_po_value: Joi.required(),
             scheduled_completion_date: Joi.required(),
-            actual_completion_date: Joi.required(),
+            actual_completion_date: Joi.optional(),
             purchase_order_file: Joi.optional(),
             completion_file: Joi.optional(),
             credential_file: Joi.optional()
