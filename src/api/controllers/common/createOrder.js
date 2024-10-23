@@ -26,7 +26,7 @@ exports.createOrderController = async (req, res) => {
         console.log(`Valid create order data`);
         const resp = await createOrderService.createOrder(req.body);
         if(resp) {
-            return res.json({success: true, status: 200, response: resp});
+            return res.json({success: true, status: 200, response: resp, message: resp});
         } else {
             return res.json({success: false, status: 500, response: []});
         }
