@@ -4,6 +4,7 @@ exports.createEnquiryController = async (req, res) => {
     try {
         const createEnquiryData = Joi.object({
             sbu_id: Joi.required(),
+            mentor_id: Joi.required(),
             sales_person_id: Joi.required(),
             customer_id: Joi.required(),
             enquiry_date: Joi.required(),
@@ -42,6 +43,7 @@ exports.editEnquiryController = async (req, res) => {
         const editEnquiryData = Joi.object({
             enquiry_id: Joi.required(),
             sbu_id: Joi.required(),
+            mentor_id: Joi.required(),
             sales_person_id: Joi.required(),
             customer_id: Joi.required(),
             enquiry_date: Joi.required(),
