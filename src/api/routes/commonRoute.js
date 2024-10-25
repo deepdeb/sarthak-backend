@@ -23,9 +23,12 @@ const { getSubSubSubSegmentListController } = require('../controllers/common/get
 const { loginController } = require('../controllers/common/login');
 const { filterListByCategoryController } = require('../controllers/common/filterListByCategory');
 const { getCustomersByFilterController } = require('../controllers/common/getCustomersByFilter');
-const { createOrderController } = require('../controllers/common/createOrder');
+const { createOrderController, editOrderController } = require('../controllers/common/createOrder');
 const { getPOTypeListController } = require('../controllers/common/getPOTypeList');
 const { getPOSubTypeListController } = require('../controllers/common/getPOSubTypeList');
+const { getOrderListController } = require('../controllers/common/getOrderList');
+const { fileuploadController } = require('../controllers/common/fileUpload');
+const { getOrderByIdController } = require('../controllers/common/getOrderById');
 // const { filterEnquiryCategoryController } = require('../controllers/common/filterEnquiryCategory');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
@@ -58,3 +61,7 @@ router.post('/getCustomersByFilter', getCustomersByFilterController)
 router.post('/createOrder', createOrderController)
 router.get('/getPOTypeList', getPOTypeListController)
 router.post('/getPOSubTypeList', getPOSubTypeListController)
+router.post('/getOrderList', getOrderListController)
+router.post('/fileUpload', fileuploadController)
+router.post('/getOrderById', getOrderByIdController)
+router.post('/editOrder', editOrderController)
