@@ -29,7 +29,8 @@ const { getPOSubTypeListController } = require('../controllers/common/getPOSubTy
 const { getOrderListController } = require('../controllers/common/getOrderList');
 const { fileuploadController } = require('../controllers/common/fileUpload');
 const { getOrderByIdController } = require('../controllers/common/getOrderById');
-// const { filterEnquiryCategoryController } = require('../controllers/common/filterEnquiryCategory');
+const { filterEnquiryCategoryController } = require('../controllers/common/filterEnquiryCategory');
+const { getEnquiriesByFilterController } = require('../controllers/common/getEnquiriesByFilter');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
 router.post('/getCustomerList', getCustomerListController)
@@ -57,7 +58,8 @@ router.post('/createFollowUp', createFollowUpController)
 router.post('/getFollowUpById', getFollowUpByIdController)
 router.post('/filterListByCategory', filterListByCategoryController)
 router.post('/getCustomersByFilter', getCustomersByFilterController)
-// router.post('/filterEnquiryCategory', filterEnquiryCategoryController)
+router.post('/filterEnquiryCategory', filterEnquiryCategoryController)
+router.post('/getEnquiriesByFilter', getEnquiriesByFilterController)
 router.post('/createOrder', createOrderController)
 router.get('/getPOTypeList', getPOTypeListController)
 router.post('/getPOSubTypeList', getPOSubTypeListController)
