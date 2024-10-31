@@ -16,7 +16,7 @@ exports.getEnquiryListController = async (req, res) => {
         console.log(`Valid get enquiry list data`);
         const resp = await getEnquiryListService.getEnquiryList(req.body);
         if(resp) {
-            return res.json({ success: true, status: 201, message: '', response: resp[0], total_count: resp[1]})
+            return res.json({ success: true, status: 201, message: '', response: resp[0], total_count: resp[1], last_enquiry_id: resp[2][0].last_enquiry_id})
         } else {
             return res.json({ success: false, status:500, message: 'Internal server error', response: []})
         }
