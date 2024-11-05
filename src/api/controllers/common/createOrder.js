@@ -3,6 +3,7 @@ const createOrderService = require('../../services/createOrderService');
 exports.createOrderController = async (req, res) => {
     try {
         const createOrderData = Joi.object({
+            enquiry_id: Joi.optional(),
             sales_person_id: Joi.required(),
             sbu_id: Joi.required(),
             customer_id: Joi.required(),
