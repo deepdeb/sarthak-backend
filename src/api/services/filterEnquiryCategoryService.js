@@ -2,7 +2,7 @@ const { readPool } = require('../../config/mysql')
 
 exports.filterEnquiryCategory = async (data) => {
     try {
-        if (data.filterby_keyword == 'enquiry_source' || data.filterby_keyword == 'principal_house' || data.filterby_keyword == 'basic_value' || data.filterby_keyword == 'tentative_month' || data.filterby_keyword == 'tentative_year') {
+        if (data.filterby_keyword == 'enquiry_source' || data.filterby_keyword == 'principal_house' || data.filterby_keyword == 'basic_value' || data.filterby_keyword == 'tentative_finalization_month' || data.filterby_keyword == 'tentative_finalization_year') {
             let sql = "SELECT distinct " + data.filterby_keyword + " as name FROM enquiry"
             const [resp] = await readPool.query(sql)
             const total_count = resp.length
