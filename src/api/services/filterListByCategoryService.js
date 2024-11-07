@@ -23,6 +23,24 @@ exports.filterListByCategory = async (data) => {
             const total_count = resp.length
 
             return [resp, total_count]
+        } else if (data.filterby_keyword == 'location' || data.filterby_keyword == 'city' || data.filterby_keyword == 'pin') {
+            let sql = "SELECT distinct " + data.filterby_keyword + " as name FROM address WHERE is_deleted = 0 AND is_active = 1"
+            const [resp] = await readPool.query(sql)
+
+            const total_count = resp.length
+
+            return [resp, total_count]
+        } else if (data.filterby_keyword == 'state') {
+            let sql1 = "SELECT distinct state_id FROM address WHERE is_deleted = 0 AND is_active = 1"
+            const [resp1] = await readPool.query(sql1)
+
+            let sql2 = "SELECT state_name as name FROM state WHERE state_id IN (?)"
+            const stateIDs = resp1.map(item => item.state_id);
+            const [resp2] = await readPool.query(sql2, [stateIDs])
+
+            const total_count = resp2.length
+
+            return [resp2, total_count]
         }
     } catch (error) {
         console.log('Filter list by category service error: ', error);
