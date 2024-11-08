@@ -33,6 +33,7 @@ const { filterEnquiryCategoryController } = require('../controllers/common/filte
 const { getEnquiriesByFilterController } = require('../controllers/common/getEnquiriesByFilter');
 const { filterOrderCategoryController } = require('../controllers/common/filterOrderCategory');
 const { getOrdersByFilterController } = require('../controllers/common/getOrdersByFilter');
+const { multipleFileUploadController } = require('../controllers/common/multipleFileUpload');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
 router.post('/getCustomerList', getCustomerListController)
@@ -67,6 +68,7 @@ router.get('/getPOTypeList', getPOTypeListController)
 router.post('/getPOSubTypeList', getPOSubTypeListController)
 router.post('/getOrderList', getOrderListController)
 router.post('/fileUpload', fileuploadController)
+router.post('/multipleFileUpload', multipleFileUploadController)
 router.post('/getOrderById', getOrderByIdController)
 router.post('/editOrder', editOrderController)
 router.post('/filterOrderCategory', filterOrderCategoryController)
