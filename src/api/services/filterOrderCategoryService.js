@@ -32,6 +32,11 @@ exports.filterOrderCategory = async (data) => {
             const [resp] = await readPool.query(sql)
             return resp;
         }
+        else if (data.filterby_keyword == 'enquiry_id') {
+            let sql = "SELECT distinct enquiry_id as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            const [resp] = await readPool.query(sql)
+            return resp; 
+        }
         else if (data.filterby_keyword == 'scheduled_completion_date') {
             let sql = "SELECT distinct DATE_FORMAT(scheduled_completion_date, '%Y-%m-%d') as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
             const [resp] = await readPool.query(sql)
