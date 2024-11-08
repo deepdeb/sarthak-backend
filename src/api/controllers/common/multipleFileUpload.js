@@ -26,10 +26,10 @@ exports.multipleFileUploadController = async (req, res) => {
                 return res.json({ success: false, status: 500, message: 'Internal server error', response: []});
             }
 
-            const files = req.files.map(file => {
-                originalFileName: file.originalname
+            const files = req.files.map(file => ({
+                originalFileName: file.originalname,
                 newFileName: file.filename
-            })
+            }))
             // const originalFilename = req.file.originalname;
             // const newFilename = req.file.filename;
 
