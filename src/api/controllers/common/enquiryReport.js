@@ -43,7 +43,7 @@ exports.enquiryReportController = async (req, res) => {
 
 async function exportToExcel(data, excelFilePath) {
     const workbook = xlsx.utils.book_new();
-    const headers = ['SL No.', 'Enquiry Date', 'Source', 'Sub-Source', 'Customer', 'Principal House', 'Offer Date', 'Basic Value', 'Date of Finalization', 'Follow Up Status'];
+    const headers = ['SL No.', 'Enquiry Date', 'Source', 'Sub-Type', 'Customer', 'Principal House', 'Offer Date', 'Basic Value', 'Date of Finalization', 'Follow Up Status'];
     const worksheet = [headers, ...data.map((row, index) => [
         index + 1,
         row.enquiry_date,
