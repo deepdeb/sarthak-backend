@@ -23,7 +23,7 @@ exports.enquiryReportController = async (req, res) => {
             }
             else if (value.type == 'export') {
                 const excelFilePath = 'enquiryreport.xlsx';
-                await exportToExcel(resp, excelFilePath);
+                await exportToExcel(resp, excelFilePath, value.start_date, value.end_date);
                 return res.download(excelFilePath, (err) => {
                     if (err) {
                         console.error('Error while downloading file:', err);
@@ -41,10 +41,21 @@ exports.enquiryReportController = async (req, res) => {
     }
 };
 
-async function exportToExcel(data, excelFilePath) {
+async function exportToExcel(data, excelFilePath, start_date, end_date) {
     const workbook = xlsx.utils.book_new();
+    const today = new Date().toLocaleDateString();
+    const [startYear, startMonth, startDay] = start_date.split('-');
+    const formattedStartDate = `${startDay}/${startMonth}/${startYear}`;
+
+    const [endYear, endMonth, endDay] = end_date.split('-');
+    const formattedEndDate = `${endDay}/${endMonth}/${endYear}`;
+
+    const firstHeader = ['Sarthak Components Private Limited'];
+    // const firstHeader = [{ v: 'Sarthak Components Private Limited', s: { alignment: { horizontal: 'center', vertical: 'center' }, font: { bold: true } } }];
+    const secondHeader = ['List of Enquiries for the period:'];
+    const thirdHeader = ['From Date:', formattedStartDate, '', 'To Date:', formattedEndDate, '', 'Run Date:', today];
     const headers = ['SL No.', 'Enquiry Date', 'Source', 'Sub-Type', 'Customer', 'Principal House', 'Offer Date', 'Basic Value', 'Date of Finalization', 'Follow Up Status'];
-    const worksheet = [headers, ...data.map((row, index) => [
+    const worksheet = [firstHeader, secondHeader, thirdHeader, [], [], [], headers, ...data.map((row, index) => [
         index + 1,
         row.enquiry_date,
         row.enquiry_source,

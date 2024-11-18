@@ -5,7 +5,7 @@ exports.getEnquiryReport = async (data) => {
         let searchCondition = "";
         let searchCondition2 = "";
 
-        if(data.customer_id) {
+        if(data.customer_id != 0) {
             searchCondition += " WHERE e.customer_id = " + data.customer_id + ""
         }
 
