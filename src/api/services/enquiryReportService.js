@@ -9,7 +9,9 @@ exports.getEnquiryReport = async (data) => {
             searchCondition += " WHERE e.customer_id = " + data.customer_id + ""
         }
 
-        if(data.start_date && data.end_date) {
+        if(data.start_date && data.end_date && data.customer_id == 0) {
+            searchCondition2 += " WHERE e.enquiry_date BETWEEN '" + data.start_date + "' AND '" + data.end_date + "'"
+        } else if (data.start_date && data.end_date && data.customer_id != 0) {
             searchCondition2 += " AND e.enquiry_date BETWEEN '" + data.start_date + "' AND '" + data.end_date + "'"
         }
 

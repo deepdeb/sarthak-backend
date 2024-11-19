@@ -9,7 +9,9 @@ exports.getOrderReport = async (data) => {
             searchCondition += " WHERE o.customer_id = " + data.customer_id + ""
         }
 
-        if(data.start_date && data.end_date) {
+        if(data.start_date && data.end_date && data.customer_id == 0) {
+            searchCondition2 += " WHERE o.po_date BETWEEN '" + data.start_date + "' AND '" + data.end_date + "'"
+        } else if (data.start_date && data.end_date && data.customer_id != 0) {
             searchCondition2 += " AND o.po_date BETWEEN '" + data.start_date + "' AND '" + data.end_date + "'"
         }
 
