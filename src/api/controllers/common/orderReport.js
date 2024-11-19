@@ -1,28 +1,28 @@
 const Joi = require('joi');
-const enquiryReportService = require('../../services/enquiryReportService');
+const orderReportService = require('../../services/orderReportService');
 const fs = require('fs');
 const xlsx = require('xlsx');
-exports.enquiryReportController = async (req, res) => {
+exports.orderReportController = async (req, res) => {
     try {
-        const enquiryReportData = Joi.object({
+        const orderReportData = Joi.object({
             customer_id: Joi.optional(),
             start_date: Joi.optional(),
             end_date: Joi.optional(),
             type: Joi.required()
         });
-        const { error, value } = enquiryReportData.validate(req.body);
+        const { error, value } = orderReportData.validate(req.body);
         if (error) {
-            console.log(`Invalid data for enquiry Report: ${error.details[0].message}`);
+            console.log(`Invalid data for order Report: ${error.details[0].message}`);
             return res.status(400).json({ success: false, message: error.details[0].message.replace(/["':]/g, '') });
         }
-        console.log(`Valid data for enquiry Report:`);
-        const resp = await enquiryReportService.getEnquiryReport(req.body);
+        console.log(`Valid data for order Report:`);
+        const resp = await orderReportService.getOrderReport(req.body);
         if (resp) {
             if (value.type == 'show') {
                 return res.json({ success: true, status: 200, response: resp })
             }
             else if (value.type == 'export') {
-                const excelFilePath = 'enquiryreport.xlsx';
+                const excelFilePath = 'orderreport.xlsx';
                 await exportToExcel(resp, excelFilePath, value.start_date, value.end_date);
                 return res.download(excelFilePath, (err) => {
                     if (err) {
@@ -39,7 +39,7 @@ exports.enquiryReportController = async (req, res) => {
         console.log('enquiry report controller error: ', error);
         return res.json({ success: false, status: 400, message: res.message, response: [] });
     }
-};
+}
 
 async function exportToExcel(data, excelFilePath, start_date, end_date) {
     const workbook = xlsx.utils.book_new();
@@ -51,21 +51,20 @@ async function exportToExcel(data, excelFilePath, start_date, end_date) {
     const formattedEndDate = `${endDay}/${endMonth}/${endYear}`;
 
     const firstHeader = ['Sarthak Components Private Limited'];
-    // const firstHeader = [{ v: 'Sarthak Components Private Limited', s: { alignment: { horizontal: 'center', vertical: 'center' }, font: { bold: true } } }];
-    const secondHeader = ['List of Enquiries for the period:'];
+    const secondHeader = ['List of Orders for the period:'];
     const thirdHeader = ['From Date:', formattedStartDate, '', 'To Date:', formattedEndDate, '', 'Run Date:', today];
-    const headers = ['SL No.', 'Enquiry Date', 'Source', 'Sub-Type', 'Customer', 'Principal House', 'Offer Date', 'Basic Value', 'Date of Finalization', 'Follow Up Status'];
+    const headers = ['SL No.', 'Customer', 'PO Date', 'PO Number', 'PO Type', 'PO Sub Type', 'Basic PO Value', 'Total PO Value(GST)', 'Scheduled Date of Completion', 'Actual Date of Completion'];
     const worksheet = [firstHeader, secondHeader, thirdHeader, [], [], headers, ...data.map((row, index) => [
         index + 1,
-        row.enquiry_date,
-        row.enquiry_source,
-        row.enquiry_sub_type_name,
         row.customer,
-        row.principal_house,
-        row.offer_date,
-        row.basic_value ? row.basic_value : '',
-        row.tentative_finalization_month && row.tentative_finalization_year ? row.tentative_finalization_month + '/' + row.tentative_finalization_year : '',
-        row.status
+        row.po_date,
+        row.po_number,
+        row.po_type,
+        row.po_sub_type,
+        row.basic_po_value ? row.basic_po_value : '',
+        row.total_po_value ? row.total_po_value : '',
+        row.scheduled_completion_date ? row.scheduled_completion_date : '',
+        row.actual_completion_date ? row.actual_completion_date : ''
     ])];
     const ws = xlsx.utils.aoa_to_sheet(worksheet);
     xlsx.utils.book_append_sheet(workbook, ws, 'Data');
