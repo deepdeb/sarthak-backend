@@ -6,7 +6,7 @@ exports.getCustomerListForEnquiryOrderController = async (req, res) => {
             sbu_id: Joi.required(),
             sales_person_id: Joi.required(),
             check_designation_id: Joi.optional(),
-            report_type: Joi.required()
+            report_navigation_type: Joi.required()
         })
         const {error, value} = getCustomerListforEnquiryOrderData.validate(req.body);
         if(error) {
