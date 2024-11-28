@@ -5,7 +5,8 @@ exports.getSalespersonListController = async (req, res) => {
         const getSalespersonListData = Joi.object({
             check_designation_id: Joi.optional(),
             sales_person_id: Joi.optional(),
-            sbu_id: Joi.optional()
+            sbu_id: Joi.optional(),
+            search_criteria: Joi.optional()
         })
         const {error, value} = getSalespersonListData.validate(req.body);
         if(error) {
