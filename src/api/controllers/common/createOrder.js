@@ -4,6 +4,7 @@ exports.createOrderController = async (req, res) => {
     try {
         const createOrderData = Joi.object({
             enquiry_id: Joi.optional(),
+            enquiry_number: Joi.optional(),
             sales_person_id: Joi.required(),
             sbu_id: Joi.required(),
             customer_id: Joi.required(),
