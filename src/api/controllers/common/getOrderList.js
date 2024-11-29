@@ -4,7 +4,8 @@ exports.getOrderListController = async (req, res) => {
     try {
         const getOrderListData = Joi.object({
             sbu_id: Joi.required(),
-            sales_person_id: Joi.required()
+            sales_person_id: Joi.required(),
+            search_criteria: Joi.optional()
         })
         const { error, value } = getOrderListData.validate(req.body);
         if(error) {
