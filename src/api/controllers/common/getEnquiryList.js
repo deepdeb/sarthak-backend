@@ -6,7 +6,8 @@ exports.getEnquiryListController = async (req, res) => {
         const getEnquiryListData = Joi.object({
             sbu_id: Joi.required(),
             check_designation_id: Joi.required(),
-            sales_person_id: Joi.required()
+            sales_person_id: Joi.required(),
+            search_criteria: Joi.required()
         })
         const { error, value } = getEnquiryListData.validate(req.body);
         if(error) {
