@@ -36,10 +36,51 @@ exports.orderReportController = async (req, res) => {
             return res.json({ success: false, status: 500, response: [] });
         }
     } catch (error) {
-        console.log('enquiry report controller error: ', error);
+        console.log('order report controller error: ', error);
         return res.json({ success: false, status: 400, message: res.message, response: [] });
     }
 }
+
+
+exports.orderReportSalespersonController = async (req, res) => {
+    try {
+        const orderReportSalespersonData = Joi.object({
+            sales_person_id: Joi.optional(),
+            start_date: Joi.optional(),
+            end_date: Joi.optional(),
+            type: Joi.required()
+        });
+        const { error, value } = orderReportSalespersonData.validate(req.body);
+        if (error) {
+            console.log(`Invalid data for order Report Salesperson: ${error.details[0].message}`);
+            return res.status(400).json({ success: false, message: error.details[0].message.replace(/["':]/g, '') });
+        }
+        console.log(`Valid data for order Report Salesperson:`);
+        const resp = await orderReportService.getOrderReportSalesperson(req.body);
+        if (resp) {
+            if (value.type == 'show') {
+                return res.json({ success: true, status: 200, response: resp })
+            }
+            else if (value.type == 'export') {
+                const excelFilePath = 'orderreport.xlsx';
+                await exportToExcel(resp, excelFilePath, value.start_date, value.end_date);
+                return res.download(excelFilePath, (err) => {
+                    if (err) {
+                        console.error('Error while downloading file:', err);
+                        return res.status(500).json({ success: false, status: 500, message: 'Error while downloading file' });
+                    }
+                    fs.unlinkSync(excelFilePath);
+                });
+            }
+        } else {
+            return res.json({ success: false, status: 500, response: [] });
+        }
+    } catch (error) {
+        console.log('order report salesperson controller error: ', error);
+        return res.json({ success: false, status: 400, message: res.message, response: [] });
+    }
+}
+
 
 async function exportToExcel(data, excelFilePath, start_date, end_date) {
     const workbook = xlsx.utils.book_new();

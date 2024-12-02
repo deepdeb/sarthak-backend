@@ -34,8 +34,8 @@ const { getEnquiriesByFilterController } = require('../controllers/common/getEnq
 const { filterOrderCategoryController } = require('../controllers/common/filterOrderCategory');
 const { getOrdersByFilterController } = require('../controllers/common/getOrdersByFilter');
 const { multipleFileUploadController } = require('../controllers/common/multipleFileUpload');
-const { enquiryReportController } = require('../controllers/common/enquiryReport');
-const { orderReportController } = require('../controllers/common/orderReport');
+const { enquiryReportController, enquiryReportSalespersonController } = require('../controllers/common/enquiryReport');
+const { orderReportController, orderReportSalespersonController } = require('../controllers/common/orderReport');
 const { getCustomerListForEnquiryOrderController } = require('../controllers/common/getCustomerListForEnquiryOrder');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
@@ -77,5 +77,7 @@ router.post('/editOrder', editOrderController)
 router.post('/filterOrderCategory', filterOrderCategoryController)
 router.post('/getOrdersByFilter', getOrdersByFilterController)
 router.post('/getEnquiryReport', enquiryReportController)
+router.post('/getEnquiryReportSalesperson', enquiryReportSalespersonController)
 router.post('/getOrderReport', orderReportController)
+router.post('/getOrderReportSalesperson', orderReportSalespersonController)
 router.post('/getCustomerListForEnquiryOrder', getCustomerListForEnquiryOrderController)
