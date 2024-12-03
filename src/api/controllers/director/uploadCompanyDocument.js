@@ -19,7 +19,7 @@ exports.uploadCompanyDocumentController = async (req, res) => {
             tan_file: Joi.optional(),
             gst_cert_file: Joi.optional(),
             iso_cert_file: Joi.optional(),
-            msme_udyan_cert: Joi.optional(),
+            msme_udyam_cert: Joi.optional(),
             presentation_file: Joi.optional(),
             credential_file: Joi.optional()
         })
