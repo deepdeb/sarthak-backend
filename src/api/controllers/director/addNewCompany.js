@@ -29,3 +29,34 @@ exports.addNewCompanyController = async (req, res) => {
         return res.json({ success: false, status: 400, message: res.message, response: []})
     }
 }
+
+exports.editCompanyController = async (req, res) => {
+    try {
+        const editCompanyData = Joi.object({
+            sbu_id: Joi.required(),
+            sbu_name : Joi.required(),
+            contact_person : Joi.required(),
+            contact_number : Joi.required(),
+            email: Joi.required(),
+            address: Joi.required(),
+            city: Joi.required(),
+            state_id: Joi.required(),
+            pin: Joi.required(),
+        })
+        const { error, value } = editCompanyData.validate(req.body);
+        if(error) {
+            console.log(`Invalid edit company data: ${error.details[0].message}`);
+            return res.status(400).json({ success: false, message: error.details[0].message.replace(/["':]/g, '') });
+        }
+        console.log(`Valid edit company data`);
+        const resp = await addNewCompanyService.editCompany(req.body);
+        if(resp) {
+            return res.json({ success: true, status: 201, message: resp, response: resp})
+        } else {
+            return res.json({ success: false, status: 500, message: 'Internal server error', response: []})
+        }
+    } catch (error) {
+        console.log('edit company controller error: ', error)
+        return res.json({ success: false, status: 400, message: res.message, response: []})
+    }
+}
