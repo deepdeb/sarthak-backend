@@ -3,7 +3,6 @@ const uploadCompanyDocumentService = require('../../services/uploadCompanyDocume
 exports.uploadCompanyDocumentController = async (req, res) => {
     try {
         const uploadCompanyDocumentData = Joi.object({
-            check_designation_id: Joi.required(),
             sbu_id: Joi.required(),
             product_file: Joi.optional(),
             project_file: Joi.optional(),

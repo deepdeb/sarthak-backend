@@ -8,6 +8,7 @@ const { createSubSubSubSegmentController } = require('../controllers/director/cr
 const { getMentorListController } = require('../controllers/director/getMentorList');
 const { addNewCompanyController, editCompanyController } = require('../controllers/director/addNewCompany');
 const { getCompanyByIdController } = require('../controllers/director/getCompanyById');
+const { uploadCompanyDocumentController } = require('../controllers/director/uploadCompanyDocument');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -22,3 +23,4 @@ router.post('/getMentorList', getMentorListController);
 router.post('/addNewCompany', addNewCompanyController);
 router.post('/editCompany', editCompanyController);
 router.post('/getCompanyById', getCompanyByIdController);
+router.post('/uploadCompanyDocument', uploadCompanyDocumentController);
