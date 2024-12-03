@@ -6,7 +6,8 @@ const { createSubSegmentController, editSubSegmentController } = require('../con
 const { createSubSubSegmentController } = require('../controllers/director/createSubSubSegment');
 const { createSubSubSubSegmentController } = require('../controllers/director/createSubSubSubSegment');
 const { getMentorListController } = require('../controllers/director/getMentorList');
-const { addNewCompanyController } = require('../controllers/director/addNewCompany');
+const { addNewCompanyController, editCompanyController } = require('../controllers/director/addNewCompany');
+const { getCompanyByIdController } = require('../controllers/director/getCompanyById');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -19,3 +20,5 @@ router.post('/editSegment', editSegmentController);
 router.post('/editSubSegment', editSubSegmentController);
 router.post('/getMentorList', getMentorListController);
 router.post('/addNewCompany', addNewCompanyController);
+router.post('/editCompany', editCompanyController);
+router.post('/getCompanyById', getCompanyByIdController);
