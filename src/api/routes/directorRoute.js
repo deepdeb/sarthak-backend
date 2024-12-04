@@ -9,6 +9,7 @@ const { getMentorListController } = require('../controllers/director/getMentorLi
 const { addNewCompanyController, editCompanyController } = require('../controllers/director/addNewCompany');
 const { getCompanyByIdController } = require('../controllers/director/getCompanyById');
 const { uploadCompanyDocumentController } = require('../controllers/director/uploadCompanyDocument');
+const { getCompanyDocumentDetailsByIdController } = require('../controllers/director/getCompanyDocumentDetailsById');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -24,3 +25,4 @@ router.post('/addNewCompany', addNewCompanyController);
 router.post('/editCompany', editCompanyController);
 router.post('/getCompanyById', getCompanyByIdController);
 router.post('/uploadCompanyDocument', uploadCompanyDocumentController);
+router.post('/getCompanyDocumentDetailsById', getCompanyDocumentDetailsByIdController)
