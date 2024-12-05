@@ -4,8 +4,8 @@ exports.getCustomerList = async (data) => {
     try {
         let searchCondition = ''
         let searchCondition2 = ''
-        if (data.offset) {
-            searchCondition2 = "OFFSET " + data.offset + ""
+        if (data.customer_offset) {
+            searchCondition2 = "OFFSET " + data.customer_offset + ""
         }
         if (data.search_criteria) {
             if (data.sbu_id == 0) {

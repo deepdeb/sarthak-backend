@@ -7,7 +7,7 @@ exports.getCustomerListController = async (req, res) => {
             sales_person_id: Joi.required(),
             check_designation_id: Joi.required(),
             search_criteria: Joi.optional(),
-            offset: Joi.optional()
+            customer_offset: Joi.optional()
         })
         const {error, value} = getCustomerListData.validate(req.body);
         if(error) {
