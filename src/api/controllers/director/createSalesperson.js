@@ -25,7 +25,7 @@ exports.createSalespersonController = async (req, res) => {
             return res.json({ success: false, status:500, message: 'Internal server error', response: []})
         }
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('create salesperson controller error: ', error)
         return res.json({ success: false, status: 400, message: res.message, response: []})
     }
 }
@@ -56,7 +56,7 @@ exports.editSalespersonController = async (req, res) => {
             return res.json({ success: false, status:500, message: 'Internal server error', response: []})
         }
     } catch (error) {
-        console.log('Error: ', error)
+        console.log('edit salesperson controller error: ', error)
         return res.json({ success: false, status: 400, message: res.message, response: []})
     }
 }

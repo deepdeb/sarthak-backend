@@ -10,6 +10,7 @@ const { addNewCompanyController, editCompanyController } = require('../controlle
 const { getCompanyByIdController } = require('../controllers/director/getCompanyById');
 const { uploadCompanyDocumentController } = require('../controllers/director/uploadCompanyDocument');
 const { getCompanyDocumentDetailsByIdController } = require('../controllers/director/getCompanyDocumentDetailsById');
+const { deleteSalespersonController } = require('../controllers/director/deleteSalesperson');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -25,4 +26,5 @@ router.post('/addNewCompany', addNewCompanyController);
 router.post('/editCompany', editCompanyController);
 router.post('/getCompanyById', getCompanyByIdController);
 router.post('/uploadCompanyDocument', uploadCompanyDocumentController);
-router.post('/getCompanyDocumentDetailsById', getCompanyDocumentDetailsByIdController)
+router.post('/getCompanyDocumentDetailsById', getCompanyDocumentDetailsByIdController);
+router.post('/deleteSalesperson', deleteSalespersonController);
