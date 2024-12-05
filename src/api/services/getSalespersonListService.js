@@ -30,7 +30,7 @@ exports.getSalespersonList = async (data) => {
 
             // const total_count = select_resp.length
             let total_count_sql = "SELECT count(sp.sales_person_id) as total_count FROM sales_person sp JOIN sbu s ON s.sbu_id = sp.sbu_id JOIN functions f ON f.function_id = sp.function_id JOIN designation d ON sp.designation_id = d.designation_id WHERE sp.sbu_id = ? " + searchCondition + ""
-            const [total_count_resp] = await readPool.query(total_count_sql)
+            const [total_count_resp] = await readPool.query(total_count_sql, [data.sbu_id]);
 
             return [select_resp, total_count_resp];
         }

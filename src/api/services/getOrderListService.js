@@ -31,7 +31,7 @@ exports.getOrderList = async (data) => {
 
             // const total_count = resp.length
             let total_count_sql = "SELECT count (o.order_id) as total_count FROM orders o JOIN po_type pot ON pot.po_type_id = o.po_type_id JOIN sales_person sp ON sp.sales_person_id = o.sales_person_id JOIN sbu sb ON o.sbu_id = sb.sbu_id JOIN customer c ON c.customer_id = o.customer_id WHERE o.sales_person_id = ? " + searchCondition + ""
-            const [total_count_resp] = await readPool.query(total_count_sql);
+            const [total_count_resp] = await readPool.query(total_count_sql, [data.sales_person_id]);
 
             return [resp, total_count_resp]
         }

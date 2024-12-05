@@ -38,7 +38,7 @@ exports.getEnquiryList = async (data) => {
             // total_count = enquiry_list_resp.length
             let total_count_sql = "SELECT count(e.enquiry_id) as total_count FROM enquiry e JOIN sales_person sp ON sp.sales_person_id = e.sales_person_id JOIN customer c ON c.customer_id = e.customer_id JOIN sbu sb ON e.sbu_id = sb.sbu_id JOIN enquiry_type et ON e.enquiry_type_id = et.enquiry_type_id JOIN enquiry_sub_type est ON est.enquiry_sub_type_id = e.enquiry_sub_type_id WHERE e.sbu_id = ? AND e.sales_person_id = ? " + searchCondition + ""
 
-            const [total_count_resp] = await readPool.query(total_count_sql)
+            const [total_count_resp] = await readPool.query(total_count_sql, [data.sbu_id, data.sales_person_id]);
 
             total_count = total_count_resp;
         }
