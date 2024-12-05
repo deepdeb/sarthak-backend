@@ -17,7 +17,7 @@ exports.getCustomerListController = async (req, res) => {
         console.log(`Valid customer list data`);
         const resp = await getCustomerListService.getCustomerList(req.body);
         if(resp) {
-            return res.json({ success: true, status: 200, response: resp[0], total_count: resp[1] })
+            return res.json({ success: true, status: 200, response: resp[0], total_count: resp[1][0].total_count})
         } else {
             return res.json({ success: false, status: 500, message: 'Internal server error', response: [] })
         }
