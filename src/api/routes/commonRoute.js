@@ -40,6 +40,7 @@ const { getCustomerListForEnquiryOrderController } = require('../controllers/com
 const { getSalespersonListForEnquiryOrderController } = require('../controllers/common/getSalespersonListForEnquiryOrder');
 const { deleteCustomerController } = require('../controllers/common/deleteCustomer');
 const { deleteEnquiryController } = require('../controllers/common/deleteEnquiry');
+const { deleteOrderController } = require('../controllers/common/deleteOrder');
 module.exports = router;
 router.post('/getDashboardCount', getDashboardCountController)
 router.post('/getCustomerList', getCustomerListController)
@@ -87,3 +88,4 @@ router.post('/getCustomerListForEnquiryOrder', getCustomerListForEnquiryOrderCon
 router.post('/getSalespersonListForEnquiryOrder', getSalespersonListForEnquiryOrderController)
 router.post('/deleteCustomer', deleteCustomerController)
 router.post('/deleteEnquiry', deleteEnquiryController)
+router.post('/deleteOrder', deleteOrderController)
