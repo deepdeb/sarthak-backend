@@ -11,7 +11,6 @@ const { getCompanyByIdController } = require('../controllers/director/getCompany
 const { uploadCompanyDocumentController } = require('../controllers/director/uploadCompanyDocument');
 const { getCompanyDocumentDetailsByIdController } = require('../controllers/director/getCompanyDocumentDetailsById');
 const { deleteSalespersonController } = require('../controllers/director/deleteSalesperson');
-const { deleteSubSubSubSegmentController } = require('../controllers/director/deleteSegment');
 module.exports = router;
 router.post('/createSalesperson', createSalespersonController);
 router.post('/editSalesperson', editSalespersonController)
@@ -29,4 +28,3 @@ router.post('/getCompanyById', getCompanyByIdController);
 router.post('/uploadCompanyDocument', uploadCompanyDocumentController);
 router.post('/getCompanyDocumentDetailsById', getCompanyDocumentDetailsByIdController);
 router.post('/deleteSalesperson', deleteSalespersonController);
-router.post('/deleteSubSubSubSegment', deleteSubSubSubSegmentController);
