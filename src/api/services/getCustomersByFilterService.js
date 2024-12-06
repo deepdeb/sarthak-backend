@@ -1,7 +1,8 @@
 const readPool = require('../../config/mysql').readPool
 
 exports.getCustomersByFilter = async (data) => {
-    try {if (data.filter_by == 'salesperson') {
+    try {
+        if (data.filter_by == 'salesperson') {
             let sales_person_sql = "SELECT sales_person_id FROM sales_person WHERE sales_person_name = ? AND is_deleted = 0"
             const [sales_person_resp] = await readPool.query(sales_person_sql, [data.filter_by_value]);
 
