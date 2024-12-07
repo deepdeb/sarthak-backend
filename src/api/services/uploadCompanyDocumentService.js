@@ -12,7 +12,7 @@ exports.uploadCompanyDocument = async (data) => {
     
     
             if(uploadCompanyDocumentResp) {
-                return "Company documents uploaded successfully";
+                return "Company documents updated successfully";
             }
         } else {
             return "Company doesn't exist";
