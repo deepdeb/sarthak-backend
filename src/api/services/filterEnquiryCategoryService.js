@@ -15,7 +15,7 @@ exports.filterEnquiryCategory = async (data) => {
             return [resp, total_count]
         }
         else if (data.filterby_keyword == 'salesperson') {
-            let sql = "SELECT sales_person_name as name FROM sales_person WHERE is_deleted = 0"
+            let sql = "SELECT distinct sales_person_name as name FROM sales_person WHERE is_deleted = 0"
             const [resp] = await readPool.query(sql)
             const total_count = resp.length
             return [resp, total_count]
