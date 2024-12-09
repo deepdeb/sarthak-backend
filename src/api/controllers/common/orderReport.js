@@ -19,7 +19,7 @@ exports.orderReportController = async (req, res) => {
         const resp = await orderReportService.getOrderReport(req.body);
         if (resp) {
             if (value.type == 'show') {
-                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1] })
+                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1], total_total_po_value: resp[2] })
             }
             else if (value.type == 'export') {
                 const excelFilePath = 'orderreport.xlsx';
@@ -59,7 +59,7 @@ exports.orderReportSalespersonController = async (req, res) => {
         const resp = await orderReportService.getOrderReportSalesperson(req.body);
         if (resp) {
             if (value.type == 'show') {
-                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1] })
+                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1], total_total_po_value: resp[2] })
             }
             else if (value.type == 'export') {
                 const excelFilePath = 'orderreport.xlsx';

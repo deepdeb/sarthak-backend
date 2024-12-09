@@ -22,8 +22,12 @@ exports.getOrderReport = async (data) => {
 
         const [basic_po_total_resp] = await readPool.query(basic_po_total_sql);
 
+        let total_po_total_sql = "SELECT sum(o.total_po_value) as total_total_po_value FROM orders o JOIN customer c ON o.customer_id = c.customer_id JOIN po_type p ON p.po_type_id = o.po_type_id LEFT JOIN po_subtype post ON post.po_subtype_id = o.po_subtype_id" + searchCondition + searchCondition2 + ""
+
+        const [total_po_total_resp] = await readPool.query(total_po_total_sql);
+
         if(resp && basic_po_total_resp) {
-            return [resp, basic_po_total_resp[0].total_basic_po_value];
+            return [resp, basic_po_total_resp[0].total_basic_po_value, total_po_total_resp[0].total_total_po_value];
         }
     } catch (error) {
         console.log("order report error: ", error);
@@ -54,8 +58,12 @@ exports.getOrderReportSalesperson = async (data) => {
 
         const [basic_po_total_resp] = await readPool.query(basic_po_total_sql);
 
-        if(resp && basic_po_total_resp) {
-            return [resp, basic_po_total_resp[0].total_basic_po_value];
+        let total_po_total_sql = "SELECT sum(o.total_po_value) as total_total_po_value FROM orders o JOIN customer c ON o.customer_id = c.customer_id JOIN po_type p ON p.po_type_id = o.po_type_id JOIN sales_person sp ON sp.sales_person_id = o.sales_person_id LEFT JOIN po_subtype post ON post.po_subtype_id = o.po_subtype_id" + searchCondition + searchCondition2 + ""
+
+        const [total_po_total_resp] = await readPool.query(total_po_total_sql);
+
+        if(resp && basic_po_total_resp && total_po_total_resp) {
+            return [resp, basic_po_total_resp[0].total_basic_po_value, total_po_total_resp[0].total_total_po_value];
         }
     } catch (error) {
         console.log("order report salesperson error: ", error);
