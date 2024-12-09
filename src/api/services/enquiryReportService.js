@@ -19,8 +19,12 @@ exports.getEnquiryReport = async (data) => {
 
         const [resp] = await readPool.query(sql);
 
-        if(resp) {
-            return resp;
+        let basic_po_total_sql = "SELECT sum(e.basic_value) as total_basic_po_value FROM enquiry e JOIN customer c ON c.customer_id = e.customer_id JOIN enquiry_sub_type est ON est.enquiry_sub_type_id = e.enquiry_sub_type_id LEFT JOIN follow_up f ON f.enquiry_id = e.enquiry_id" + searchCondition + searchCondition2 + ""
+
+        const [basic_po_total_resp] = await readPool.query(basic_po_total_sql);
+
+        if(resp && basic_po_total_resp) {
+            return [resp, basic_po_total_resp[0].total_basic_po_value];
         }
     } catch (error) {
         console.log("enquiry report error: ", error);
@@ -48,8 +52,12 @@ exports.getEnquiryReportSalesperson = async (data) => {
 
         const [resp] = await readPool.query(sql);
 
-        if(resp) {
-            return resp;
+        let basic_po_total_sql = "SELECT sum(e.basic_value) as total_basic_po_value FROM enquiry e JOIN customer c ON c.customer_id = e.customer_id JOIN enquiry_sub_type est ON est.enquiry_sub_type_id = e.enquiry_sub_type_id JOIN sales_person sp ON sp.sales_person_id = e.sales_person_id LEFT JOIN follow_up f ON f.enquiry_id = e.enquiry_id" + searchCondition + searchCondition2 + ""
+
+        const [basic_po_total_resp] = await readPool.query(basic_po_total_sql);
+
+        if(resp && basic_po_total_resp) {
+            return [resp, basic_po_total_resp[0].total_basic_po_value];
         }
     } catch (error) {
         console.log("enquiry report salesperson error: ", error);

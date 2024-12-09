@@ -19,7 +19,7 @@ exports.enquiryReportController = async (req, res) => {
         const resp = await enquiryReportService.getEnquiryReport(req.body);
         if (resp) {
             if (value.type == 'show') {
-                return res.json({ success: true, status: 200, response: resp })
+                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1] })
             }
             else if (value.type == 'export') {
                 const excelFilePath = 'enquiryreport.xlsx';
@@ -59,7 +59,7 @@ exports.enquiryReportSalespersonController = async (req, res) => {
         const resp = await enquiryReportService.getEnquiryReportSalesperson(req.body);
         if (resp) {
             if (value.type == 'show') {
-                return res.json({ success: true, status: 200, response: resp })
+                return res.json({ success: true, status: 200, response: resp[0], total_basic_po_value: resp[1] })
             }
             else if (value.type == 'export') {
                 const excelFilePath = 'enquiryreport.xlsx';
