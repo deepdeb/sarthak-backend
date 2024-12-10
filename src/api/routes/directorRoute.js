@@ -11,6 +11,7 @@ const { getCompanyByIdController } = require('../controllers/director/getCompany
 const { uploadCompanyDocumentController } = require('../controllers/director/uploadCompanyDocument');
 const { getCompanyDocumentDetailsByIdController } = require('../controllers/director/getCompanyDocumentDetailsById');
 const { deactiveSalespersonController } = require('../controllers/director/deactivateSalesperson');
+const { unlinkSyncRemoveController } = require('../controllers/director/unlinkSyncRemove');
 // const { deleteSalespersonController } = require('../controllers/director/deleteSalesperson');
 // const { deleteSubSubSubSegmentController, deleteSubSubSegmentController, deleteSubSegmentController, deleteSegmentController } = require('../controllers/director/deleteSegment');
 module.exports = router;
@@ -35,3 +36,4 @@ router.post('/getCompanyDocumentDetailsById', getCompanyDocumentDetailsByIdContr
 // router.post('/deleteSubSegment', deleteSubSegmentController);
 // router.post('/deleteSegment', deleteSegmentController);
 router.post('/deactivateSalesperson', deactiveSalespersonController)
+router.post('/unlinkSyncRemove', unlinkSyncRemoveController);
