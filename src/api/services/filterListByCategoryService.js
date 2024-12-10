@@ -34,7 +34,7 @@ exports.filterListByCategory = async (data) => {
             let sql1 = "SELECT distinct state_id FROM address WHERE is_deleted = 0 AND is_active = 1"
             const [resp1] = await readPool.query(sql1)
 
-            let sql2 = "SELECT state_name as name FROM state WHERE state_id IN (?)"
+            let sql2 = "SELECT state_name as name, state_id FROM state WHERE state_id IN (?)"
             const stateIDs = resp1.map(item => item.state_id);
             const [resp2] = await readPool.query(sql2, [stateIDs])
 

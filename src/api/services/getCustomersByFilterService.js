@@ -19,7 +19,8 @@ exports.getCustomersByFilter = async (data) => {
 
             const total_count = resp.length
             return [resp, total_count]
-        } else if (data.filter_by == 'segment') {
+        } else if (data.filter_by == 'segment' && !data.segment_by_state_keyword) {
+            console.log('enter only segment')
             let segment_sql = "SELECT segment_id FROM segment WHERE segment_name = ? AND is_deleted = 0 AND is_active = 1"
             const [segment_resp] = await readPool.query(segment_sql, [data.filter_by_value]);
 
@@ -28,7 +29,23 @@ exports.getCustomersByFilter = async (data) => {
 
             const total_count = resp.length
             return [resp, total_count];
-        } else if (data.filter_by == 'location' || data.filter_by == 'city' || data.filter_by == 'pin') {
+        } else if (data.filter_by == 'segment' && data.segment_by_state_keyword){
+
+            let segment_sql = "SELECT segment_id FROM segment WHERE segment_name = ? AND is_deleted = 0 AND is_active = 1"
+            const [segment_resp] = await readPool.query(segment_sql, [data.filter_by_value]);
+
+            let customer_id_sql = "SELECT customer_id FROM address WHERE state_id = ?"
+            const [customer_resp] = await readPool.query(customer_id_sql, [data.segment_by_state_keyword]);
+
+            const customer_ids = customer_resp.map(customer => customer.customer_id);
+
+            let sql = "SELECT c.customer_id, c.sbu_id, sb.sbu_name, c.sales_person_id, DATE_FORMAT(c.customer_create_date, '%Y-%m-%d') as customer_create_date, sp.sales_person_name, c.customer, s.segment_name, ss.subsegment_name, c.name, c.designation, c.department, c.mobile, c.alt_mobile, c.email, c.alt_email, c.product_category_id, DATE_FORMAT(c.created_at, '%d-%m-%Y') as date, a.street_no, a.street_name, a.area, a.location, a.district, a.city, st.state_name, a.pin FROM customer c JOIN segment s ON s.segment_id = c.segment_id LEFT JOIN subsegment ss ON ss.subsegment_id = c.subsegment_id JOIN sbu sb ON sb.sbu_id = c.sbu_id JOIN address a ON a.customer_id = c.customer_id JOIN state st ON st.state_id = a.state_id JOIN sales_person sp ON sp.sales_person_id = c.sales_person_id WHERE c.segment_id = ? AND c.customer_id IN (?) AND c.is_deleted = 0 AND c.is_active = 1"
+            const [resp] = await readPool.query(sql, [segment_resp[0].segment_id, customer_ids]);
+
+            const total_count = resp.length
+            return [resp, total_count];
+
+        }else if (data.filter_by == 'location' || data.filter_by == 'city' || data.filter_by == 'pin') {
             let sql1 = "SELECT customer_id FROM address WHERE " + data.filter_by + " = ? AND is_deleted = 0 AND is_active = 1"
             const [resp1] = await readPool.query(sql1, [data.filter_by_value]);
 

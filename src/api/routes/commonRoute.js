@@ -38,6 +38,7 @@ const { enquiryReportController, enquiryReportSalespersonController } = require(
 const { orderReportController, orderReportSalespersonController } = require('../controllers/common/orderReport');
 const { getCustomerListForEnquiryOrderController } = require('../controllers/common/getCustomerListForEnquiryOrder');
 const { getSalespersonListForEnquiryOrderController } = require('../controllers/common/getSalespersonListForEnquiryOrder');
+const { getSegmentsByStateController } = require('../controllers/common/getSegmentsByState');
 // const { deleteCustomerController } = require('../controllers/common/deleteCustomer');
 // const { deleteEnquiryController } = require('../controllers/common/deleteEnquiry');
 // const { deleteOrderController } = require('../controllers/common/deleteOrder');
@@ -89,3 +90,4 @@ router.post('/getSalespersonListForEnquiryOrder', getSalespersonListForEnquiryOr
 // router.post('/deleteCustomer', deleteCustomerController)
 // router.post('/deleteEnquiry', deleteEnquiryController)
 // router.post('/deleteOrder', deleteOrderController)
+router.post('/getSegmentsByState', getSegmentsByStateController)
