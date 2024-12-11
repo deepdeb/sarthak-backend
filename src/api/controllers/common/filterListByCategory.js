@@ -3,7 +3,9 @@ const filterListByCategoryService = require('../../services/filterListByCategory
 exports.filterListByCategoryController = async (req, res) => {
     try {
         const filterListByCategoryData = Joi.object({
-        filterby_keyword: Joi.required()
+        filterby_keyword: Joi.required(),
+        sales_person_id: Joi.required(),
+        sbu_id: Joi.required()
     })
     const { error, value } = filterListByCategoryData.validate(req.body);
     if(error) {

@@ -3,7 +3,9 @@ const getSegmentsByStateService = require('../../services/getSegmentsByStateServ
 exports.getSegmentsByStateController = async (req, res) => {
     try {
         const segmentsByStateData = Joi.object({
-            segment_by_state_keyword: Joi.required()
+            segment_by_state_keyword: Joi.required(),
+            sales_person_id: Joi.required(),
+            sbu_id: Joi.required()
         })
         const { error, value } = segmentsByStateData.validate(req.body);
         if (error) {
