@@ -4,7 +4,9 @@ exports.getOrdersByFilterController = async (req, res) => {
     try {
         const getOrdersByFilterData = Joi.object({
             filter_by: Joi.required(),
-            filter_by_value: Joi.required()
+            filter_by_value: Joi.required(),
+            sales_person_id: Joi.required(),
+            sbu_id: Joi.required()
         })
         const { error, value } = getOrdersByFilterData.validate(req.body);
         if(error) {

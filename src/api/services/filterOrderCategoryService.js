@@ -2,6 +2,10 @@ const { readPool } = require('../../config/mysql')
 
 exports.filterOrderCategory = async (data) => {
     try {
+        let select_condition = ''
+        if(data.sbu_id != 0) {
+            select_condition = "AND sales_person_id = " + data.sales_person_id + ""
+        }
         if(data.filterby_keyword == 'customer') {
             let sql = "SELECT distinct customer as name FROM customer WHERE is_deleted = 0 AND is_active = 1";
             const [resp] = await readPool.query(sql)
@@ -13,32 +17,32 @@ exports.filterOrderCategory = async (data) => {
             return resp;
         }
         else if (data.filterby_keyword == 'po_number') {
-            let sql = "SELECT distinct po_number as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct po_number as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + " ";
             const [resp] = await readPool.query(sql)
             return resp;
         }
         else if (data.filterby_keyword == 'po_date') {
-            let sql = "SELECT distinct DATE_FORMAT(po_date, '%Y-%m-%d') as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct DATE_FORMAT(po_date, '%Y-%m-%d') as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + " ";
             const [resp] = await readPool.query(sql)
             return resp;
         }
         else if (data.filterby_keyword == 'basic_po_value') {
-            let sql = "SELECT distinct basic_po_value as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct basic_po_value as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + "";
             const [resp] = await readPool.query(sql)
             return resp;
         }
         else if (data.filterby_keyword == 'total_po_value') {
-            let sql = "SELECT distinct total_po_value as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct total_po_value as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + "";
             const [resp] = await readPool.query(sql)
             return resp;
         }
         else if (data.filterby_keyword == 'enquiry_id') {
-            let sql = "SELECT distinct enquiry_id as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct enquiry_id as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + "";
             const [resp] = await readPool.query(sql)
             return resp; 
         }
         else if (data.filterby_keyword == 'scheduled_completion_date') {
-            let sql = "SELECT distinct DATE_FORMAT(scheduled_completion_date, '%Y-%m-%d') as name FROM orders WHERE is_deleted = 0 AND is_active = 1";
+            let sql = "SELECT distinct DATE_FORMAT(scheduled_completion_date, '%Y-%m-%d') as name FROM orders WHERE is_deleted = 0 AND is_active = 1 " + select_condition + "";
             const [resp] = await readPool.query(sql)
             return resp;
         }
