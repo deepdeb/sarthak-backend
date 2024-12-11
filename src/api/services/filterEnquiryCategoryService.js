@@ -2,14 +2,18 @@ const { readPool } = require('../../config/mysql')
 
 exports.filterEnquiryCategory = async (data) => {
     try {
+        let select_condition = ''
+        if(data.sbu_id != 0) {
+            select_condition = "WHERE sales_person_id = " + data.sales_person_id +""
+        }
         if (data.filterby_keyword == 'enquiry_source' || data.filterby_keyword == 'principal_house' || data.filterby_keyword == 'basic_value' || data.filterby_keyword == 'tentative_finalization_month' || data.filterby_keyword == 'tentative_finalization_year' || data.filterby_keyword == 'reff_number') {
-            let sql = "SELECT distinct " + data.filterby_keyword + " as name FROM enquiry"
+            let sql = "SELECT distinct " + data.filterby_keyword + " as name FROM enquiry "+ select_condition +""
             const [resp] = await readPool.query(sql)
             const total_count = resp.length
             return [resp, total_count]
         }
         else if (data.filterby_keyword == 'enquiry_date') {
-            let sql = "SELECT distinct DATE_FORMAT(enquiry_date, '%Y-%m-%d') as name FROM enquiry"
+            let sql = "SELECT distinct DATE_FORMAT(enquiry_date, '%Y-%m-%d') as name FROM enquiry "+ select_condition +""
             const [resp] = await readPool.query(sql)
             const total_count = resp.length
             return [resp, total_count]
