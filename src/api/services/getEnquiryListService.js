@@ -46,7 +46,10 @@ exports.getEnquiryList = async (data) => {
         let last_enquiry_id_sql = "SELECT max(enquiry_id) As last_enquiry_id FROM enquiry"
         const [last_enquiry_id_resp] = await readPool.query(last_enquiry_id_sql);
 
-        return [enquiry_list, total_count, last_enquiry_id_resp]
+        let last_enquiry_number_sql = "select enquiry_number as last_enquiry_number from enquiry order by enquiry_id desc limit 1"
+        const [last_enquiry_number_resp] = await readPool.query(last_enquiry_number_sql);
+
+        return [enquiry_list, total_count, last_enquiry_id_resp, last_enquiry_number_resp]
     } catch (error) {
         console.log('Get enquiry list service error: ', error);
         return;
