@@ -6,8 +6,8 @@ exports.getCustomerListBySalesperson = async (data) => {
             let customer_list_by_salesperson_sql = "SELECT customer_id, customer FROM customer"
             var [customer_list_by_salesperson_resp] = await readPool.query(customer_list_by_salesperson_sql);
         } else {
-            let customer_list_by_salesperson_sql = "SELECT customer_id, customer FROM customer WHERE sales_person_id = ?"
-            var [customer_list_by_salesperson_resp] = await readPool.query(customer_list_by_salesperson_sql, [data.sales_person_id]);
+            let customer_list_by_salesperson_sql = "SELECT customer_id, customer FROM customer"
+            var [customer_list_by_salesperson_resp] = await readPool.query(customer_list_by_salesperson_sql);
         }
 
         if (customer_list_by_salesperson_resp) {
