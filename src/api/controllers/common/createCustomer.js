@@ -90,7 +90,7 @@ exports.editCustomerController = async (req, res) => {
             return res.json({ success: false, status: 500, message: 'Internal server error', response: [] })
         }
     } catch (error) {
-        console.log('Error: ', error);
+        console.log('create customer controller error: ', error);
         return res.json({ success: false, status: 400, message: error.message, response: []})
     }
 }
