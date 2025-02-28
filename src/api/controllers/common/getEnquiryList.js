@@ -8,7 +8,8 @@ exports.getEnquiryListController = async (req, res) => {
             check_designation_id: Joi.required(),
             sales_person_id: Joi.required(),
             search_criteria: Joi.optional(),
-            enquiry_offset: Joi.optional()
+            enquiry_offset: Joi.optional(),
+            no_of_records: Joi.optional()
         })
         const { error, value } = getEnquiryListData.validate(req.body);
         if(error) {
